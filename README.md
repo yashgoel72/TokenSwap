@@ -1,66 +1,41 @@
-## Foundry
+# TokenSwap Contract
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+TokenSwap Contract is an Ethereum smart contract that facilitates the swapping of Ethereum (ETH) and US Dollar Coin (USDC) using the SupraOracles Price Feed to ensure precise exchange rates.
 
-Foundry consists of:
+## Overview
 
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
+This smart contract allows users to perform token swaps between ETH and USDC seamlessly. The exchange rates are fetched in real-time from the SupraOracles Price Feed to ensure accuracy.
 
-## Documentation
+## Features
+- Created a Foundry Project to streamline the building and testing of the Smart Contract. The Foundry Project provides an organized and efficient environment for development
+- **ETH <-> USDC Swapping:** Users can exchange Ethereum (ETH) for US Dollar Coin (USDC) and vice versa using this contract.
+- **SupraOracles Price Feed:** The contract utilizes SupraOracles Price Feed to obtain precise and up-to-date exchange rates for ETH/USDC.
+- **Fee Calculation:** A fee is calculated based on the specified exchange rate for each swap.
+  
+## Contract Details
 
-https://book.getfoundry.sh/
+The smart contract is implemented in Solidity and includes the following main functions:
 
-## Usage
+```solidity
+contract SwapToken {
 
-### Build
 
-```shell
-$ forge build
-```
+    function swapUsdcToEth(uint256 amountIn) external returns (uint256 amountOut) {
+         // Swaps a fixed amount of USDC for a maximum possible amount of ETH.
+    }
 
-### Test
+    function swapEthToUsdc(uint256 amountIn) external returns (uint256 amountOut) {
+        // Swaps a fixed amount of ETH for a maximum possible amount of USDC.
+    }
 
-```shell
-$ forge test
-```
+    function calculateEth(uint amountIn) internal returns(uint, uint ) {
+        // Calculates the amount of ETH received and the associated fee for a given amount of USDC
+    }
 
-### Format
+    function calculateUsdc(uint amountIn) internal returns(uint, uint ) {
+        // Calculates the amount of USDC received and the associated fee for a given amount of ETH
+    }
+}
 
-```shell
-$ forge fmt
-```
 
-### Gas Snapshots
 
-```shell
-$ forge snapshot
-```
-
-### Anvil
-
-```shell
-$ anvil
-```
-
-### Deploy
-
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
-```
-
-### Cast
-
-```shell
-$ cast <subcommand>
-```
-
-### Help
-
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
-```
