@@ -16,7 +16,10 @@ contract SwapToken {
     //Percentage used to calculate fee.
     uint public exchnageRate;
 
-    constructor(address supraAddress , address usdcAddress , address ethAddress) {
+    /**[G-1]Constructors can be marked as payable to save deployment gas
+Payable functions cost less gas to execute, because the compiler does not have to add extra checks to ensure that no payment is provided. A constructor can be safely marked as payable, because only the deployer would be able to pass funds, and the project itself would not pass any funds.
+**/
+    constructor(address supraAddress , address usdcAddress , address ethAddress) payable {
         sValueFeed = ISupraSValueFeed(supraAddress);
         usdc = IERC20(usdcAddress);
         eth = IERC20(ethAddress);
